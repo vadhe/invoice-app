@@ -5,11 +5,14 @@ templ Index() {
 		<meta charset="utf-8"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1"/>
 		<link href="../dist/output.css" rel="stylesheet"/>
+		<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
 	</head>
 	<body>
-		<main class="container">
-			<p class="bg-red-800">hello world</p>
+		<main class="">
+			@Sidebar()
 		</main>
-		<p>o</p>
+		<script>
+          lucide.createIcons();
+        </script>
 	</body>
 }
