@@ -12,6 +12,7 @@ func main() {
 	component := view.Index()
 
 	http.Handle("/", templ.Handler(component))
-	fmt.Println("Listening on :3000")
+	http.Handle("/dist/", http.StripPrefix("/dist/", http.FileServer(http.Dir("dist"))))
+	fmt.Println("Listening on http://localhost:3000")
 	http.ListenAndServe(":3000", nil)
 }

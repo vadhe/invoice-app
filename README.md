@@ -12,9 +12,8 @@ install package
 # Install go depedencies 
 go mod tidy
 
-# build the templ 
- templ generate
-
 # Run Development server
+templ generate --watch
+pnpm build-css
 air
 ```
