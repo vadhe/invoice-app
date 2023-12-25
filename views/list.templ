@@ -1,0 +1,46 @@
+package view
+
+type Item struct {
+	id     string
+	date   string
+	status string
+	price  string
+	name   string
+}
+
+var items = []Item{
+	{id: "#RT3080", date: "Due  19 Aug 2021", status: "paid", price: "£ 1,800.90", name: "Jensen Huang"},
+	{id: "#RT3080", date: "Due  19 Aug 2021", status: "pending", price: "£ 1,800.90", name: "Jensen Huang"},
+	{id: "#RT3080", date: "Due  19 Aug 2021", status: "draft", price: "£ 1,800.90", name: "Jensen Huang"},
+}
+
+templ List () {
+	<div class="mt-16">
+		for _, item := range items {
+			<div class="h-16  my-4 flex justify-between items-center bg-white px-6 border rounded-lg shadow-sm">
+				<h2 class="font-bold">{ item.id }</h2>
+				<span class="font-medium text-sm text-wild-blue-yonder-500">
+					{ item.date }
+				</span>
+				<span class="font-medium text-sm text-wild-blue-yonder-500">{ item.name }</span>
+				<span class="font-bold">{ item.price }</span>
+				<button
+					class={ templ.KV("bg-pizazz-50 border-pizazz-50 text-pizazz-600", item.status== "pending"),
+                        templ.KV("bg-shamrock-50 border-shamrock-50 text-shamrock-400", item.status== "paid"),
+                        templ.KV("bg-gun-powder-50 border-gun-powder-50 text-gun-powder-900", item.status== "draft"),
+                        "font-bold gap-2 w-28 h-10 justify-center border  rounded-lg flex items-center " }
+					type="button"
+				>
+					<div
+						class={ templ.KV(" bg-pizazz-600", item.status== "pending"),
+                        templ.KV(" bg-shamrock-400", item.status== "paid"),
+                        templ.KV(" bg-gun-powder-900", item.status== "draft"),
+                        "w-2 h-2  rounded-full" }
+					></div>
+					<span>{ item.status }</span>
+				</button>
+				<i data-lucide="chevron-right" class="stroke-blue-marguerite-500"></i>
+			</div>
+		}
+	</div>
+}

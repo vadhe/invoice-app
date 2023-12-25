@@ -1,0 +1,50 @@
+package view
+
+import "strconv"
+
+templ Header () {
+	<script>
+	   document.addEventListener('DOMContentLoaded', function() {
+       const elFilter = document.querySelector("#filter");
+	   const elOptions = document.querySelector("#options");
+	   elOptions.classList.add("hidden")
+	   console.log(elFilter)
+       elFilter.addEventListener("click", () => {
+		    elOptions.classList.toggle("hidden")
+		});
+	
+    });
+	</script>
+	<div class="flex justify-between items-start">
+		<div>
+			<h2 class="text-3xl font-bold">Invoices</h2>
+			<p class="text-xs font-medium text-east-bay-900">There are { strconv.Itoa(len(items)) } total invoices</p>
+		</div>
+		<div class="flex gap-10">
+			<div class="relative">
+				<div id="filter" class="flex items-center gap-5 hover:cursor-pointer">
+					<span class="font-bold">Filter by status</span>
+					<i data-lucide="chevron-down" class="stroke-blue-marguerite-500"></i>
+				</div>
+				<div id="options" class="absolute gap-4 w-full p-4 flex flex-col  top-full bg-white border rounded-xl shadow-lg">
+					<div>
+						<input type="checkbox" id="option1"/>
+						<label for="option1">Draft</label>
+					</div>
+					<div>
+						<input type="checkbox" id="option2"/>
+						<label for="option2">Pending</label>
+					</div>
+					<div>
+						<input type="checkbox" id="option2"/>
+						<label for="option2">Pending</label>
+					</div>
+				</div>
+			</div>
+			<button class="flex items-center gap-2 bg-blue-marguerite-500 rounded-full p-2">
+				<i data-lucide="plus-circle" class="fill-white  w-8 h-8"></i>
+				<span class="text-white font-bold">New Invoice</span>
+			</button>
+		</div>
+	</div>
+}
