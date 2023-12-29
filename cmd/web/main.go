@@ -10,6 +10,7 @@ import (
 	"github.com/a-h/templ"
 	"github.com/jackc/pgx/v4"
 	"github.com/joho/godotenv"
+	"github.com/vadhe/invoice-app/models"
 	view "github.com/vadhe/invoice-app/views"
 )
 
@@ -27,9 +28,9 @@ func main() {
 	defer db.Close(context.Background())
 
 	fmt.Println("Successfully connected to the database!")
-
+	invoices := models.GetInvoice(db)
 	// render index page
-	component := view.Index()
+	component := view.Index(invoices)
 	http.Handle("/", templ.Handler(component))
 
 	// make folder dist and public as static file

@@ -2,7 +2,7 @@ package view
 
 import "strconv"
 
-templ Header () {
+templ Header (countInvoice int) {
 	<script>
 	   document.addEventListener('DOMContentLoaded', function() {
        const elFilter = document.querySelector("#filter");
@@ -18,7 +18,7 @@ templ Header () {
 	<div class="flex justify-between items-start">
 		<div>
 			<h2 class="text-3xl font-bold">Invoices</h2>
-			<p class="text-xs font-medium text-east-bay-900">There are { strconv.Itoa(len(items)) } total invoices</p>
+			<p class="text-xs font-medium text-east-bay-900">There are { strconv.Itoa(countInvoice) } total invoices</p>
 		</div>
 		<div class="flex gap-10">
 			<div class="relative">
