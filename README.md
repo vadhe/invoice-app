@@ -9,6 +9,9 @@ install package
 
 
 ```bash
+# Run docker
+docker compose up -d
+
 # Install go depedencies 
 go mod tidy
 

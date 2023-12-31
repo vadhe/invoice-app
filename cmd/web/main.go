@@ -7,11 +7,9 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/a-h/templ"
 	"github.com/jackc/pgx/v4"
 	"github.com/joho/godotenv"
-	"github.com/vadhe/invoice-app/models"
-	view "github.com/vadhe/invoice-app/views"
+	"github.com/vadhe/invoice-app/controllers"
 )
 
 func main() {
@@ -28,10 +26,7 @@ func main() {
 	defer db.Close(context.Background())
 
 	fmt.Println("Successfully connected to the database!")
-	invoices := models.GetInvoice(db)
-	// render index page
-	component := view.Index(invoices)
-	http.Handle("/", templ.Handler(component))
+	controllers.Invoices(db)
 
 	// make folder dist and public as static file
 	http.Handle("/dist/", http.StripPrefix("/dist/", http.FileServer(http.Dir("dist"))))

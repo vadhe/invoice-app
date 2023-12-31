@@ -63,3 +63,28 @@ func GetInvoice(db *pgx.Conn) []Invoice {
 
 	return invoices
 }
+
+func GetInvoiceByStatus(db *pgx.Conn, draft, paid, pending string) []Invoice {
+	rows, err := db.Query(context.Background(), `SELECT * FROM invoices WHERE status=$1 OR status=$2 OR status=$3`, draft, paid, pending)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer rows.Close()
+
+	var invoices []Invoice
+
+	for rows.Next() {
+		var invoice Invoice
+		err := rows.Scan(&invoice.ID, &invoice.Date, &invoice.IdInvoices, &invoice.Status, &invoice.Price, &invoice.Name)
+		if err != nil {
+			log.Fatal(err)
+		}
+		invoices = append(invoices, invoice)
+	}
+
+	if err := rows.Err(); err != nil {
+		log.Fatal(err)
+	}
+
+	return invoices
+}

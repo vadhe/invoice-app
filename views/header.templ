@@ -27,18 +27,41 @@ templ Header (countInvoice int) {
 					<i data-lucide="chevron-down" class="stroke-blue-marguerite-500"></i>
 				</div>
 				<div id="options" class="absolute gap-4 w-full p-4 flex flex-col  top-full bg-white border rounded-xl shadow-lg">
-					<div>
-						<input type="checkbox" id="option1"/>
-						<label for="option1">Draft</label>
-					</div>
-					<div>
-						<input type="checkbox" id="option2"/>
-						<label for="option2">Pending</label>
-					</div>
-					<div>
-						<input type="checkbox" id="option2"/>
-						<label for="option2">Pending</label>
-					</div>
+					<form
+						hx-trigger="change input"
+						hx-get="/invoice"
+						hx-target="#filteredResults"
+						hx-swap="outerHTML"
+						hx-include="[name='draft'], [name='pending'], [name='paid']"
+					>
+						<div>
+							<input
+								type="checkbox"
+								id="draft"
+								value="draft"
+								name="draft"
+							/>
+							<label for="draft">Draft</label>
+						</div>
+						<div>
+							<input
+								type="checkbox"
+								id="pending"
+								value="pending"
+								name="pending"
+							/>
+							<label for="pending">Pending</label>
+						</div>
+						<div>
+							<input
+								value="paid"
+								type="checkbox"
+								id="paid"
+								name="paid"
+							/>
+							<label for="paid">Paid</label>
+						</div>
+					</form>
 				</div>
 			</div>
 			<button class="flex items-center gap-2 bg-blue-marguerite-500 rounded-full p-2">
