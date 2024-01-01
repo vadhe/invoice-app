@@ -1,7 +1,6 @@
 package controllers
 
 import (
-	"fmt"
 	"net/http"
 
 	"github.com/a-h/templ"
@@ -26,11 +25,7 @@ func Invoices(db *pgx.Conn) {
 		} else {
 			invoices = models.GetInvoice(db)
 		}
-		// if len(invoices) == 0 {
-
-		// }
-		fmt.Println(len(models.GetInvoiceByStatus(db, draft, paid, pending)))
-		component := view.List(invoices)
+		component := view.List(invoices, "We cannot find your Filter", "You can try to change to other Status")
 		component.Render(r.Context(), w)
 	})
 }
