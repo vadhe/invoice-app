@@ -1,0 +1,12 @@
+package view
+
+templ Button (text , button string) {
+	<button
+		class={ templ.KV(" text-wild-blue-yonder-500 bg-white-lilac-50 hover:bg-titan-white-100", button== "edit"),
+                        templ.KV(" bg-roman-500 hover:bg-sweet-pink-300", button== "delete"),
+                        templ.KV(" bg-blue-marguerite-500 hover:bg-medium-purple-400", button== "mark"),
+                        "rounded-full py-4 px-6 text-white font-bold" }
+	>
+		{ text }
+	</button>
+}

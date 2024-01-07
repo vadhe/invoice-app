@@ -1,12 +1,15 @@
 package view
 
-import "github.com/vadhe/invoice-app/models"
+import "os"
 
-templ Index(invoice []models.Invoice) {
+templ Layout( headers , contents templ.Component) {
 	<head>
 		<meta charset="utf-8"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1"/>
-		<link href="../dist/output.css" rel="stylesheet"/>
+		<link
+			href={ os.Getenv("BASE_URL") + "/public/css/style.css" }
+			rel="stylesheet"
+		/>
 		<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
 		<link rel="preconnect" href="https://fonts.googleapis.com"/>
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -18,8 +21,8 @@ templ Index(invoice []models.Invoice) {
 			@Sidebar()
 			<div class="mx-16 grid grid-cols-12 col-start-2 col-end-12 gap-5">
 				<div class="col-start-3 col-end-11 w-full mt-16">
-					@Header(len(invoice))
-					@List(invoice, "  Create an invoice by clicking the ", "New Invoice button and get started")
+					@headers
+					@contents
 				</div>
 			</div>
 		</main>

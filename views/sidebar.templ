@@ -1,12 +1,14 @@
 package view
 
+import "os"
+
 templ Sidebar() {
 	<div class="h-screen fixed w-[103px] overflow-hidden flex flex-col items-center justify-between rounded-r-3xl bg-gun-powder-950">
-		<img src="../public/images/logo.png"/>
+		<img src={ os.Getenv("BASE_URL") + "/public/images/logo.png" }/>
 		<div class="fex h-60 p-8 flex flex-col justify-between items-center">
 			<i data-lucide="moon" class="fill-wild-blue-yonder-500 stroke-wild-blue-yonder-500"></i>
 			<hr class="border border-east-bay-900 w-32"/>
-			<img src="../public/images/user.png"/>
+			<img src={ os.Getenv("BASE_URL") + "/public/images/user.png" }/>
 		</div>
 	</div>
 }

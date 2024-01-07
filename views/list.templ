@@ -10,30 +10,18 @@ templ List (invoice []models.Invoice, titleEmpatyData, helperTitleEmpatyData str
 			@EmpatyData(titleEmpatyData, helperTitleEmpatyData)
 		} else {
 			for _, item := range invoice {
-				<div class="h-16  my-4 flex justify-between items-center bg-white px-6 border rounded-lg shadow-sm">
-					<h2 class="font-bold">{ item.IdInvoices }</h2>
-					<span class="font-medium text-sm text-wild-blue-yonder-500">
-						Due { item.Date.Local().Format("02 Jan 2006") }
-					</span>
-					<span class="font-medium text-sm text-wild-blue-yonder-500">{ item.Name }</span>
-					<span class="font-bold">€{ strconv.FormatFloat(item.Price, 'f', 2, 64) }</span>
-					<button
-						class={ templ.KV("bg-pizazz-50 border-pizazz-50 text-pizazz-600", item.Status== "pending"),
-                        templ.KV("bg-shamrock-50 border-shamrock-50 text-shamrock-400", item.Status== "paid"),
-                        templ.KV("bg-gun-powder-50 border-gun-powder-50 text-gun-powder-900", item.Status== "draft"),
-                        "font-bold gap-2 w-28 h-10 justify-center border  rounded-lg flex items-center " }
-						type="button"
-					>
-						<div
-							class={ templ.KV(" bg-pizazz-600", item.Status== "pending"),
-                        templ.KV(" bg-shamrock-400", item.Status== "paid"),
-                        templ.KV(" bg-gun-powder-900", item.Status== "draft"),
-                        "w-2 h-2  rounded-full" }
-						></div>
-						<span>{ item.Status }</span>
-					</button>
-					<i data-lucide="chevron-right" class="stroke-blue-marguerite-500"></i>
-				</div>
+				<a href={ templ.SafeURL("/invoice/detail/") }>
+					<div class="h-16 cursor-pointer  my-4 flex justify-between items-center bg-white px-6 border rounded-lg shadow-sm">
+						<h2 class="font-bold">{ item.IdInvoices }</h2>
+						<span class="font-medium text-sm text-wild-blue-yonder-500">
+							Due { item.Date.Local().Format("02 Jan 2006") }
+						</span>
+						<span class="font-medium text-sm text-wild-blue-yonder-500">{ item.Name }</span>
+						<span class="font-bold">€{ strconv.FormatFloat(item.Price, 'f', 2, 64) }</span>
+						@BadgeStatus(item.Status)
+						<i data-lucide="chevron-right" class="stroke-blue-marguerite-500"></i>
+					</div>
+				</a>
 			}
 		}
 	</div>

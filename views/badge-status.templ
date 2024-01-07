@@ -1,0 +1,19 @@
+package view
+
+templ BadgeStatus(status string) {
+	<button
+		class={ templ.KV("bg-pizazz-50 border-pizazz-50 text-pizazz-600", status== "pending"),
+                        templ.KV("bg-shamrock-50 border-shamrock-50 text-shamrock-400", status== "paid"),
+                        templ.KV("bg-gun-powder-50 border-gun-powder-50 text-gun-powder-900", status== "draft"),
+                        "font-bold gap-2 w-28 h-10 justify-center border  rounded-lg flex items-center " }
+		type="button"
+	>
+		<div
+			class={ templ.KV(" bg-pizazz-600", status== "pending"),
+                        templ.KV(" bg-shamrock-400", status== "paid"),
+                        templ.KV(" bg-gun-powder-900", status== "draft"),
+                        "w-2 h-2  rounded-full" }
+		></div>
+		<span>{ status }</span>
+	</button>
+}

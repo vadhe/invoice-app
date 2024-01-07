@@ -1,0 +1,67 @@
+package view;
+
+templ Detail () {
+	<div class="mt-8">
+		<div class="bg-white rounded-lg justify-between h-20 flex items-center px-8">
+			<div class="flex items-center gap-5">
+				<span>Status</span>
+				@BadgeStatus("pending")
+			</div>
+			<div class="flex gap-2 items-center">
+				@Button("Edit", "edit")
+				@Button("Delete", "delete")
+				@Button("Mark as Paid", "mark")
+			</div>
+		</div>
+		<div class="mt-6 rounded-lg bg-white p-12 font-medium text-xs text-wild-blue-yonder-500">
+			<div class="flex items-center justify-between">
+				<div class="flex flex-col gap-y-2">
+					<span class="font-bold text-black">#XM9141</span>
+					<span>Graphic Design</span>
+				</div>
+				<div class="w-[20%]">
+					19 Union Terrace
+					London 
+					E1 3EZ
+					United Kingdom
+				</div>
+			</div>
+			<div class="grid  grid-cols-3 gap-y-8">
+				<div class="flex flex-col gap-y-4">
+					<span>Invoice Date</span>
+					<span class="font-bold text-black text-base">21 Aug 2021</span>
+				</div>
+				<div class="flex flex-col gap-y-4 ">
+					<span>Bill To</span>
+					<span class="font-bold text-black text-base">Alex Grim</span>
+				</div>
+				<div class="flex flex-col gap-y-4 ">
+					<span>Sent to</span>
+					<span class="font-bold text-black text-base">alexgrim@mail.com</span>
+				</div>
+				<div class="flex flex-col gap-y-4">
+					<span>Payment Due</span>
+					<span class="font-bold text-black text-base">20 Sep 2021</span>
+				</div>
+			</div>
+			<div class="bg-[#F9FAFE] h-[184px] rounded-t-lg w-full p-8 ">
+				<div class="flex mb-8 w-full justify-between">
+					<span>Item Name</span>
+					<span>QTY</span>
+					<span>Price</span>
+					<span>Total</span>
+				</div>
+				<div class=" flex w-full justify-between">
+					<span class="font-bold text-black text-base">Banner Design</span>
+					<span>1</span>
+					<span>£ 156.00</span>
+					<span>£ 156.00</span>
+				</div>
+			</div>
+			<div class="bg-gun-powder-900 p-8 rounded-b-lg w-full flex justify-between text-white">
+				<span>Amount Due</span>
+				<span class="font-bold text-2xl ">£ 556.00</span>
+			</div>
+		</div>
+	</div>
+}

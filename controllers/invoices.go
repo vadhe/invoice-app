@@ -13,8 +13,8 @@ func Invoices(db *pgx.Conn) {
 	var invoices []models.Invoice
 
 	invoices = models.GetInvoice(db)
-	component := view.Index(invoices)
-	http.Handle("/", templ.Handler(component))
+	layout := view.Layout(view.Filter(len(invoices)), view.List(invoices, "Create an invoice by clicking the ", "New Invoice button and get started"))
+	http.Handle("/", templ.Handler(layout))
 
 	http.HandleFunc("/invoice", func(w http.ResponseWriter, r *http.Request) {
 		draft := r.URL.Query().Get("draft")
@@ -25,7 +25,12 @@ func Invoices(db *pgx.Conn) {
 		} else {
 			invoices = models.GetInvoice(db)
 		}
-		component := view.List(invoices, "We cannot find your Filter", "You can try to change to other Status")
-		component.Render(r.Context(), w)
+		list := view.List(invoices, "We cannot find your Filter", "You can try to change to other Status")
+		list.Render(r.Context(), w)
+	})
+
+	http.HandleFunc("/invoice/detail/", func(w http.ResponseWriter, r *http.Request) {
+		layout := view.Layout(view.Back(), view.Detail())
+		layout.Render(r.Context(), w)
 	})
 }

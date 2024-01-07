@@ -1,0 +1,20 @@
+package view;
+
+templ Back () {
+	<script>
+	   document.addEventListener('DOMContentLoaded', function() {
+		   const buttonBack = document.querySelector("#btn-back");
+           buttonBack.addEventListener("click", () => {
+             history.back();
+           })
+	   });
+	</script>
+	<div>
+		<button id="btn-back" class="flex gap-6 items-center" type="button">
+			<i data-lucide="chevron-left" class="stroke-blue-marguerite-500"></i>
+			<span>
+				Go back
+			</span>
+		</button>
+	</div>
+}

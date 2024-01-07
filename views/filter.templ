@@ -2,7 +2,7 @@ package view
 
 import "strconv"
 
-templ Header (countInvoice int) {
+templ Filter (countInvoice int) {
 	<script>
 	   document.addEventListener('DOMContentLoaded', function() {
        const elFilter = document.querySelector("#filter");
@@ -68,10 +68,7 @@ templ Header (countInvoice int) {
 					</form>
 				</div>
 			</div>
-			<button class="flex items-center gap-2 bg-blue-marguerite-500 rounded-full p-2">
-				<i data-lucide="plus-circle" class="fill-white  w-8 h-8"></i>
-				<span class="text-white font-bold">New Invoice</span>
-			</button>
+			@ButtonCreateInvoice()
 		</div>
 	</div>
 }
