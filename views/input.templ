@@ -1,0 +1,12 @@
+package view
+
+templ Input(name, placeholder, label string) {
+	<div class="text-wild-blue-yonder-500 flex flex-col gap-2 w-fullF">
+		<label for={ name } class="font-medium text-xs">{ label }</label>
+		<input
+			name={ name }
+			placeholder={ placeholder }
+			class="border active:border-medium-purple-400 rounded-lg text-bunker-950 px-5 font-bold border-titan-white-100 w-full h-12"
+		/>
+	</div>
+}
