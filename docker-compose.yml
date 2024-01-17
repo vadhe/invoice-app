@@ -9,4 +9,4 @@ services:
       POSTGRES_PASSWORD: invoice
       POSTGRES_DB: invoice
     ports:
-      - 5432:5432
+      - 5416:5432

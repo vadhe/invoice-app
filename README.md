@@ -9,6 +9,9 @@ install package
 
 
 ```bash
+# copy env
+cp .env.example .env
+
 # Run docker
 docker compose up -d
 
@@ -19,13 +22,11 @@ go mod tidy
 goose -dir=migrations create name_table sql
 
 # Run migration
-goose -dir=migrations postgres "user= dbname= password= sslmode=disable host=localhost port=5432" up
+goose -dir=migrations postgres "user=invoice dbname=invoice password=invoice sslmode=disable host=localhost port=5416" up
 
 # Run seed
 go run ./cmd/seed/main.go
 
 # Run Development server
-templ generate --watch
-pnpm build-css
-air
+pnpm dev
 ```
